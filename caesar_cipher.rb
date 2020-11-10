@@ -2,26 +2,29 @@ def caesar_cipher(string, num)
     cryp = Array.new(string.split(""))
     a_score = "A".ord
     z_score = "z".ord
-  
-    
-sent = "";
+    diff = "z".ord - "a".ord
+    sent = "";
    
     cryp.each{ |ind| 
-        order = ind.ord
-        if order < z_score && order >= a_score
-            if order +num < z_score 
-                sent+=(order +num).chr
-            else
-             
-                new_num =  num- (z_score - order) -1
-                sent+=(a_score + new_num).chr
+        letter = ind.ord
+        if letter < z_score && letter >= a_score
+            if letter +num < z_score      
+                if letter <="Z".ord && letter >= "A".ord && letter + num > "Z".ord
+                        sent+=(letter -diff + num-1).chr
+                else
+                    sent+=(letter +num).chr
+                end
             end
         else
-            sent+=(order.chr)
+            sent+=(letter.chr)
         end
     }
-    puts sent
+    puts "Here is your ciphered string " << sent
 end
 
+puts "Type a string you would like cipher"
+string = gets.chomp
+puts "How big of a shift you want to apply?"
+shift = gets.chomp.to_i
 
-caesar_cipher("What a string!",5)
+caesar_cipher(string, shift)
