@@ -1,4 +1,5 @@
-def caesar_cipher(string, num)  
+def caesar_cipher(string, num)
+      
     cryp = Array.new(string.split(""))
     a_score = "A".ord
     z_score = "z".ord
